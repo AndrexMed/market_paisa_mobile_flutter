@@ -1,0 +1,1 @@
+export '../views/products/home_view.dart';
