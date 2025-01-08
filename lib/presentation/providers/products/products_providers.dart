@@ -16,12 +16,8 @@ class ProductsNotifier extends StateNotifier<List<Product>> {
 
   ProductsNotifier({required this.fetchMoreProducts}) : super([]);
 
-  bool get isEmpty => state.isEmpty;
-
-  Future<void> getProducts() async {
-    if (isLoading) {
-      return;
-    }
+  Future<void> loadProducts() async {
+    if (isLoading) return;
 
     isLoading = true;
     final List<Product> products = await fetchMoreProducts();

@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:market_paisa/presentation/providers/products/initial_loading_provider.dart';
 import 'package:market_paisa/presentation/providers/products/products_providers.dart';
 import 'package:market_paisa/presentation/widgets/shared/custom_app_bar.dart';
+import 'package:market_paisa/presentation/widgets/shared/full_screen_loader.dart';
 
 class HomeView extends ConsumerStatefulWidget {
   const HomeView({super.key});
@@ -16,7 +17,7 @@ class HomeViewState extends ConsumerState<HomeView>
   @override
   void initState() {
     super.initState();
-    ref.read(productsProvider.notifier).getProducts();
+    ref.read(productsProvider.notifier).loadProducts();
   }
 
   @override
@@ -25,9 +26,7 @@ class HomeViewState extends ConsumerState<HomeView>
     final initialLoading = ref.watch(initialLoadingProvider);
 
     if (initialLoading) {
-      return const Center(
-        child: CircularProgressIndicator(),
-      );
+      return const FullScreenLoader();
     }
 
     final products = ref.watch(productsProvider);
