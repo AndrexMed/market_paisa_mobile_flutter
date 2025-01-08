@@ -36,6 +36,13 @@ class HomeViewState extends ConsumerState<HomeView>
       key: scaffoldKey,
       appBar: AppBar(
         title: const Text('Market Paisa'),
+        actions: [
+          IconButton(onPressed: () {}, icon: const Icon(Icons.search)),
+          IconButton(
+            icon: const Icon(Icons.shopping_cart),
+            onPressed: () {},
+          ),
+        ],
       ),
       body: ListView.builder(
         itemCount: products.length,
