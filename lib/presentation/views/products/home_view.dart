@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:market_paisa/presentation/providers/products/initial_loading_provider.dart';
 import 'package:market_paisa/presentation/providers/products/products_provider.dart';
+import 'package:market_paisa/presentation/widgets/products/products_slideshow.dart';
 import 'package:market_paisa/presentation/widgets/shared/custom_app_bar.dart';
 import 'package:market_paisa/presentation/widgets/shared/full_screen_loader.dart';
 import 'package:market_paisa/presentation/widgets/shared/side_menu.dart';
@@ -32,6 +33,10 @@ class HomeViewState extends ConsumerState<HomeView>
 
     final products = ref.watch(productsProvider);
     final scaffoldKey = GlobalKey<ScaffoldState>();
+
+    // Take only the first 10 products from the list
+    final first10Products = products.take(5).toList();
+
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
@@ -44,17 +49,7 @@ class HomeViewState extends ConsumerState<HomeView>
           ),
         ],
       ),
-      body: ListView.builder(
-        itemCount: products.length,
-        itemBuilder: (context, index) {
-          final product = products[index];
-          return ListTile(
-            title: Text(product.title),
-            subtitle: Text(product.price.toString()),
-            onTap: () {},
-          );
-        },
-      ),
+      body: ProductsSlideshow(products: first10Products),
       drawer: SideMenu(scaffoldKey: scaffoldKey),
     );
   }
