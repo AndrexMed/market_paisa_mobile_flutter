@@ -46,7 +46,7 @@ class _Slide extends StatelessWidget {
               color: Colors.black45, blurRadius: 10, offset: Offset(0, 10))
         ],
         image: DecorationImage(
-            fit: BoxFit.cover, image: NetworkImage(product.images[0])));
+            fit: BoxFit.cover, image: NetworkImage(product.image)));
 
     return Padding(
         padding: const EdgeInsets.only(bottom: 30),
@@ -55,7 +55,8 @@ class _Slide extends StatelessWidget {
           child: ClipRRect(
               borderRadius: BorderRadius.circular(20),
               child: Image.network(
-                product.images[0],
+                // product.images[0],
+                product.image,
                 errorBuilder: (context, error, stackTrace) =>
                     const DecoratedBox(
                   decoration: BoxDecoration(color: Colors.black),

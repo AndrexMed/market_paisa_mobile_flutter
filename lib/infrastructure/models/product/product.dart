@@ -1,10 +1,14 @@
 class Product {
-  final String id;
+  final int id;
   final String title;
-  final int price;
+  // final int price;
+  final double price;
   final String description;
-  final Category category;
-  final List<String> images;
+  // final Category category;
+  final String category;
+  // final List<String> images;
+  final String image;
+  final Rating rating;
 
   Product({
     required this.id,
@@ -12,7 +16,9 @@ class Product {
     required this.price,
     required this.description,
     required this.category,
-    required this.images,
+    // required this.images,
+    required this.image,
+    required this.rating,
   });
 
   factory Product.fromJson(Map<String, dynamic> json) {
@@ -21,8 +27,11 @@ class Product {
       title: json['title'],
       price: json['price'],
       description: json['description'],
-      category: Category.fromJson(json['category']),
-      images: List<String>.from(json['images']),
+      // category: Category.fromJson(json['category']),
+      category: json['category'],
+      // images: List<String>.from(json['images']),
+      image: json['image'],
+      rating: Rating.fromJson(json['rating']),
     );
   }
 
@@ -32,12 +41,15 @@ class Product {
       'title': title,
       'price': price,
       'description': description,
-      'category': category.toJson(),
-      'images': images,
+      // 'category': category.toJson(),
+      'category': category,
+      // 'images': images,
+      'image': image,
     };
   }
 }
 
+//No se usa debido a la migracion de api
 class Category {
   final String id;
   final String name;
@@ -63,5 +75,23 @@ class Category {
       'name': name,
       'imageUrl': imageUrl,
     };
+  }
+}
+//----------------------------------------------------------
+
+class Rating {
+  final int rate;
+  final int count;
+
+  Rating({
+    required this.rate,
+    required this.count,
+  });
+
+  factory Rating.fromJson(Map<String, dynamic> json) {
+    return Rating(
+      rate: json['rate'],
+      count: json['count'],
+    );
   }
 }
