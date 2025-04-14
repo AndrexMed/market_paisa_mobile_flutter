@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:market_paisa/presentation/providers/products/initial_loading_provider.dart';
 import 'package:market_paisa/presentation/providers/products/products_provider.dart';
 import 'package:market_paisa/presentation/widgets/products/products_slideshow.dart';
-import 'package:market_paisa/presentation/widgets/shared/custom_app_bar.dart';
 import 'package:market_paisa/presentation/widgets/shared/full_screen_loader.dart';
 import 'package:market_paisa/presentation/widgets/shared/side_menu.dart';
 
@@ -35,7 +34,7 @@ class HomeViewState extends ConsumerState<HomeView>
     final scaffoldKey = GlobalKey<ScaffoldState>();
 
     // Take only the first 10 products from the list
-    final first10Products = products.take(5).toList();
+    final first10Products = products.take(10).toList();
 
     return Scaffold(
       key: scaffoldKey,

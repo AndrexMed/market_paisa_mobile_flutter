@@ -1,6 +1,7 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:market_paisa/domain/entities/product.dart';
 
 class ProductsSlideshow extends StatelessWidget {
@@ -48,42 +49,49 @@ class _Slide extends StatelessWidget {
         image: DecorationImage(
             fit: BoxFit.cover, image: NetworkImage(product.image)));
 
-    return Padding(
-        padding: const EdgeInsets.only(bottom: 30),
-        child: DecoratedBox(
-          decoration: decoration,
-          child: ClipRRect(
-              borderRadius: BorderRadius.circular(20),
-              child: Image.network(
-                // product.images[0],
-                product.image,
-                errorBuilder: (context, error, stackTrace) =>
-                    const DecoratedBox(
-                  decoration: BoxDecoration(color: Colors.black),
-                  child: Center(
-                    child: Icon(
-                      Icons.camera_alt_outlined,
-                      color: Colors.white,
-                      size: 40,
-                    ),
-                  ),
-                ),
-                width: double.infinity,
-                height: double.infinity,
-                fit: BoxFit.cover,
-                loadingBuilder: (context, child, loadingProgress) {
-                  if (loadingProgress == null) {
-                    // return child;
-                    return FadeIn(child: child);
-                  }
-                  return const DecoratedBox(
+    return GestureDetector(
+      onTap: () {
+        //TO DO
+        print('Product ID: ${product.id}');
+         context.push('/home/0/product/${product.id}');
+      },
+      child: Padding(
+          padding: const EdgeInsets.only(bottom: 30),
+          child: DecoratedBox(
+            decoration: decoration,
+            child: ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                child: Image.network(
+                  // product.images[0],
+                  product.image,
+                  errorBuilder: (context, error, stackTrace) =>
+                      const DecoratedBox(
                     decoration: BoxDecoration(color: Colors.black),
                     child: Center(
-                      child: CircularProgressIndicator(strokeWidth: 2),
+                      child: Icon(
+                        Icons.camera_alt_outlined,
+                        color: Colors.white,
+                        size: 40,
+                      ),
                     ),
-                  );
-                },
-              )),
-        ));
+                  ),
+                  width: double.infinity,
+                  height: double.infinity,
+                  fit: BoxFit.cover,
+                  loadingBuilder: (context, child, loadingProgress) {
+                    if (loadingProgress == null) {
+                      // return child;
+                      return FadeIn(child: child);
+                    }
+                    return const DecoratedBox(
+                      decoration: BoxDecoration(color: Colors.black),
+                      child: Center(
+                        child: CircularProgressIndicator(strokeWidth: 2),
+                      ),
+                    );
+                  },
+                )),
+          )),
+    );
   }
 }

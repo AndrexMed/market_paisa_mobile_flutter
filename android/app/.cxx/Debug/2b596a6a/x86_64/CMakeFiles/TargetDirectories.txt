@@ -1,0 +1,2 @@
+C:/Users/giova/Desktop/Desarrollo de Software/market_paisa_mobile_flutter/android/app/.cxx/Debug/2b596a6a/x86_64/CMakeFiles/edit_cache.dir
+C:/Users/giova/Desktop/Desarrollo de Software/market_paisa_mobile_flutter/android/app/.cxx/Debug/2b596a6a/x86_64/CMakeFiles/rebuild_cache.dir

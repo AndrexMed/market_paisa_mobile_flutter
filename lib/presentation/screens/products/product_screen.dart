@@ -1,4 +1,4 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 
 class ProductScreen extends StatelessWidget {
   static const name = 'ProductScreen';
@@ -7,6 +7,13 @@ class ProductScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Product Screen'),
+      ),
+      body: Center(
+        child: Text('Product ID: $productId'),
+      ),
+    );
   }
 }
